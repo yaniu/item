@@ -170,6 +170,7 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                 Xiang_Activity.this.setResult(30, in);
                 finish();
                 break;
+            //asa
             case R.id.k_x_name:
                 break;
             case R.id.k_x_fen:
