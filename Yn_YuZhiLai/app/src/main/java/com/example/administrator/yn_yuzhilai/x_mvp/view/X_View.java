@@ -1,5 +1,6 @@
 package com.example.administrator.yn_yuzhilai.x_mvp.view;
 
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
 
@@ -14,5 +15,8 @@ public interface X_View {
     void showKeXiang(KeBean keBean);
     //专辑详情
     void showZhuanXiang(JingBean jingBean);
+
+    //分享界面
+    void showFen(FenBean fenBean);
 
 }

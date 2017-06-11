@@ -3,6 +3,7 @@ package com.example.administrator.yn_yuzhilai.mine.shou_mvp;
 import android.content.Context;
 
 import com.example.administrator.yn_yuzhilai.bean.CallBean;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouLieBean;
 import com.example.administrator.yn_yuzhilai.bean.ZhuBean;
 
@@ -18,5 +19,6 @@ public interface Shou_Model {
         void showLie(ShouLieBean shouLieBean);
         void showCall(CallBean callBean);
        // void showZhu(ZhuBean zhuBean);
+
     }
 }

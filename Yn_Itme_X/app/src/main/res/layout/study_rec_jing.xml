@@ -63,7 +63,7 @@
                 android:id="@+id/rec_text6_jing"
                 android:layout_marginLeft="20dp"
                 android:text="免费"
-                android:layout_marginTop="26.7dp"
+                android:layout_marginTop="62.7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"/>

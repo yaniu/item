@@ -3,6 +3,7 @@ package com.example.administrator.yn_yuzhilai.tools;
 
 import com.example.administrator.yn_yuzhilai.bean.CallBean;
 import com.example.administrator.yn_yuzhilai.bean.CateGroyBean;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.FirstHandBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
@@ -11,6 +12,7 @@ import com.example.administrator.yn_yuzhilai.bean.OneJingBean;
 import com.example.administrator.yn_yuzhilai.bean.OneKeBean;
 import com.example.administrator.yn_yuzhilai.bean.OneMianBean;
 import com.example.administrator.yn_yuzhilai.bean.OnePicBean;
+import com.example.administrator.yn_yuzhilai.bean.QQLogin;
 import com.example.administrator.yn_yuzhilai.bean.RegBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouLieBean;
@@ -164,6 +166,24 @@ public interface MyServer {
                              @Field("ver_code") int ver_code, @Field("tick") String tick,
                              @Field("session") String session,
                              @Field("sign") String sign);
+
+ //分享链接
+
+ @POST("/app/v1/share_object")
+ @FormUrlEncoded
+ Flowable<FenBean> getFen(@Field("app_id") String appId, @Field("dev_id") String dev_id,
+                           @Field("ver_code") int ver_code, @Field("tick") String tick,
+                           @Field("session") String session, @Field("object_id") int object_id,
+                           @Field("sign") String sign);
+ //QQ登录
+ @POST("/app/v1/qq_login")
+ @FormUrlEncoded
+ Flowable<QQLogin> getQQ(@Field("app_id") String appId, @Field("dev_id") String dev_id,
+                         @Field("ver_code") int ver_code, @Field("tick") String tick,
+
+                         @Field("qqid") String qqid,@Field("nickname")String nickname,
+                         @Field("img_url") String img_url,@Field("sign") String sign);
+
 
  //注销客户
  @POST("/app/v1/user_logout")

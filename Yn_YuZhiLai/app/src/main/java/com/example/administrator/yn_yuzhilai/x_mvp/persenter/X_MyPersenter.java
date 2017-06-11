@@ -2,6 +2,7 @@ package com.example.administrator.yn_yuzhilai.x_mvp.persenter;
 
 import android.content.Context;
 
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
 import com.example.administrator.yn_yuzhilai.x_mvp.model.X_Model;
@@ -37,6 +38,11 @@ public class X_MyPersenter implements X_Persenter {
             @Override
             public void getJing(JingBean jingBean) {
                 x_view.showZhuanXiang(jingBean);
+            }
+
+            @Override
+            public void getFen(FenBean fenBean) {
+                x_view.showFen(fenBean);
             }
         });
     }

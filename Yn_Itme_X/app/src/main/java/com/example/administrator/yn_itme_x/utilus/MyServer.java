@@ -3,9 +3,11 @@ package com.example.administrator.yn_itme_x.utilus;
 import com.example.administrator.yn_itme_x.bean.FirstHandBean;
 import com.example.administrator.yn_itme_x.bean.JingBean;
 import com.example.administrator.yn_itme_x.bean.KeBean;
+import com.example.administrator.yn_itme_x.bean.MaBean;
 import com.example.administrator.yn_itme_x.bean.OneJingBean;
 import com.example.administrator.yn_itme_x.bean.OneKeBean;
 import com.example.administrator.yn_itme_x.bean.OneMianBean;
+import com.example.administrator.yn_itme_x.bean.RegBean;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -86,5 +88,20 @@ public interface MyServer {
                                        @Field("ver_code")int ver_code, @Field("tick")String tick,
                                        @Field("object_id") int object_id,
                                        @Field("sign")String sign);
+    //注册界面
+    @POST("app/v1/user_reg")
+    @FormUrlEncoded
+    Flowable<RegBean> getReg(@Field("app_id")String appId, @Field("dev_id")String dev_id,
+                             @Field("ver_code")int ver_code, @Field("tick")String tick,
+                             @Field("mobile") String mobile,
+                             @Field("sign")String sign);
+    //核对验证码
+    @POST("app/v1/user_check_rand")
+    @FormUrlEncoded
+    Flowable<MaBean> getMa(@Field("app_id")String appId, @Field("dev_id")String dev_id,
+                           @Field("ver_code")int ver_code, @Field("tick")String tick,
+                           @Field("session") String session, @Field("rand") String rand,
+                           @Field("passwd") String passwd,
+                           @Field("sign")String sign);
 
 }

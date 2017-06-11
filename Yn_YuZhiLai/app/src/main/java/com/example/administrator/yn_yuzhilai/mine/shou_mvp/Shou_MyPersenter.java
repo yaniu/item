@@ -3,6 +3,7 @@ package com.example.administrator.yn_yuzhilai.mine.shou_mvp;
 import android.content.Context;
 
 import com.example.administrator.yn_yuzhilai.bean.CallBean;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouLieBean;
 import com.example.administrator.yn_yuzhilai.bean.ZhuBean;
 
@@ -36,6 +37,8 @@ public class Shou_MyPersenter implements Shou_Persenter {
 
                 shou_view.showCall(callBean);
             }
+
+
 
            /* @Override
             public void showZhu(ZhuBean zhuBean) {

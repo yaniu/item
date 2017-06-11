@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.administrator.yn_yuzhilai.bean.CallBean;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouLieBean;
-import com.example.administrator.yn_yuzhilai.bean.ZhuBean;
 import com.example.administrator.yn_yuzhilai.tools.MyServer;
 import com.example.administrator.yn_yuzhilai.tools.SharedpreferenceUtile;
 import com.example.administrator.yn_yuzhilai.tools.Utlues;
@@ -22,15 +22,6 @@ import io.reactivex.subscribers.DefaultSubscriber;
  */
 
 public class Shou_MyModel implements Shou_Model {
-    @Override
-    public void getShowLie(Context context, final OnShowLie onShowLie) {
-        //获取收藏列表
-       getShow(context,onShowLie);
-        //获取客服电话
-        getCall(context,onShowLie);
-        //获取注销客户
-       // getZhu(context,onShowLie);
-    }
 
    /* private void getZhu(Context context, final OnShowLie onShowLie) {
         StringBuffer sb =new StringBuffer();
@@ -133,5 +124,27 @@ public class Shou_MyModel implements Shou_Model {
                     }
                 });
 
+    }
+
+
+   /* @Override
+    public void getShowLie(Context context, int object_id, OnShowLie onShowLie) {
+        //获取收藏列表
+        getShow(context,onShowLie);
+        //获取客服电话
+        getCall(context,onShowLie);
+        //获取注销客户
+        // getZhu(context,onShowLie);
+        getFen(context,object_id,onShowLie);
+    }*/
+
+    @Override
+    public void getShowLie(Context context, OnShowLie onShowLie) {
+        //获取收藏列表
+        getShow(context,onShowLie);
+        //获取客服电话
+        getCall(context,onShowLie);
+        //获取注销客户
+        // getZhu(context,onShowLie);
     }
 }

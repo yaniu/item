@@ -1,6 +1,7 @@
 package com.example.administrator.yn_yuzhilai.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,7 +15,10 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -26,6 +30,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.administrator.yn_yuzhilai.R;
 import com.example.administrator.yn_yuzhilai.adpater.PinAdpater;
 import com.example.administrator.yn_yuzhilai.bean.CallBean;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
 import com.example.administrator.yn_yuzhilai.bean.ShouBean;
@@ -40,6 +45,15 @@ import com.example.administrator.yn_yuzhilai.tools.SharedpreferenceUtile;
 import com.example.administrator.yn_yuzhilai.tools.Utlues;
 import com.example.administrator.yn_yuzhilai.x_mvp.persenter.X_MyPersenter;
 import com.example.administrator.yn_yuzhilai.x_mvp.view.X_View;
+import com.tencent.connect.UserInfo;
+import com.tencent.connect.auth.QQToken;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,10 +119,24 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
     private String mai;
 
 
+
+    private FenBean.DataBean data;
+    private static final String TAG = "MainActivity";
+
+    private static final String APP_ID = "1105602574"; //获取的APPID
+    private ShareUiListener mIUiListener;
+    private Tencent mTencent;
+    private RadioButton qq;
+    private RadioButton kj;
+    private String video;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //传入参数APPID
+        mTencent = Tencent.createInstance(APP_ID, Xiang_Activity.this.getApplicationContext());
         setContentView(R.layout.xiang_j);
+
         ButterKnife.bind(this);
         changeImageSize();
         Intent intent =getIntent();
@@ -145,6 +173,63 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
             case R.id.k_x_name:
                 break;
             case R.id.k_x_fen:
+              if(login_boolean){
+                  AlertDialog.Builder builder = new AlertDialog.Builder(Xiang_Activity.this);
+                  final AlertDialog alertDialog = builder.create();
+                  View vs =View.inflate(Xiang_Activity.this,R.layout.fen_alder,null);
+                  Window window = alertDialog.getWindow();
+                  window.setGravity(Gravity.BOTTOM);
+                  qq = (RadioButton) vs.findViewById(R.id.x_f_qq);
+                  kj = (RadioButton) vs.findViewById(R.id.x_f_kj);
+                  TextView tx = (TextView) vs.findViewById(R.id.x_f_tx);
+                  alertDialog.setView(vs);
+                  alertDialog.dismiss();
+                  alertDialog.show();
+                  qq.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                      @Override
+                      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                          final Bundle params = new Bundle();
+                          params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);//分享的类型
+                          params.putString(QQShare.SHARE_TO_QQ_TITLE,  data.getShare_title());//分享标题
+                          params.putString(QQShare.SHARE_TO_QQ_SUMMARY,data.getShare_content());//要分享的内容摘要
+                          params.putString(QQShare.SHARE_TO_QQ_TARGET_URL,video);//内容地址
+                          params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL,data.getShare_img());//分享的图片URL
+                          params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "测试");//应用名称
+                          mTencent.shareToQQ(Xiang_Activity.this, params, new ShareUiListener());
+                      }
+                  });
+                  kj.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                      @Override
+                      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                          int QzoneType = QzoneShare.SHARE_TO_QZONE_TYPE_NO_TYPE;
+                          Bundle params = new Bundle();
+                          params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneType);
+                          params.putString(QzoneShare.SHARE_TO_QQ_TITLE, data.getShare_title());//分享标题
+                          params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, data.getShare_content());//分享的内容摘要
+                          params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, video);//分享的链接
+                        /*  //分享的图片, 以ArrayList<String>的类型传入，以便支持多张图片（注：图片最多支持9张图片，多余的图片会被丢弃）
+                          ArrayList<String> imageUrls = new ArrayList<String>();
+                          imageUrls.add("http://avatar.csdn.net/B/3/F/1_sandyran.jpg");//添加一个图片地址*/
+                          params.putString(QzoneShare.SHARE_TO_QQ_IMAGE_URL, data.getShare_img());//分享的图片URL
+                          mTencent.shareToQzone(Xiang_Activity.this, params, new ShareUiListener());
+
+                      }
+                  });
+
+                  tx.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          alertDialog.dismiss();
+                      }
+                  });
+
+              }else{
+                  Intent intent =new Intent(Xiang_Activity.this,LogActivity.class);
+                  intent.putExtra("position",1);
+                  startActivityForResult(intent,1);
+              }
                 break;
             case R.id.k_x_jc:
                 break;
@@ -222,6 +307,11 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                 break;
         }
     }
+/*
+    */
+
+
+
     private void changeImageSize() {
         //定义底部标签图片大小
         Drawable drawableFirst = getResources().getDrawable(R.mipmap.course_custom);
@@ -286,9 +376,10 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
     public void showKeXiang(KeBean keBean) {
         KeBean.DataBean data = keBean.getData();
         kXName.setText(data.getTitle());
-
+        kXName2.setText(data.getTitle2());
         kXText1.setText(data.getTitle());
-        kXText2.setText(data.getTitle2());
+        kXText2.setText(data.getAbstractX());
+
         //Glide.with(this).load(data.getSpeaker_head()).into(kXTou);
         Glide.with(Xiang_Activity.this).load(data.getSpeaker_head()).asBitmap().centerCrop().into(new BitmapImageViewTarget(kXTou)
         {
@@ -302,10 +393,8 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
         }
         );
         kXNum.setText("已售：" + data.getTry_length());
-
-
-        String   video = data.getCourse_video();
-        boolean up = kXJc.setUp(video, "啦啦啦拉拉拉拉", "");
+        video = data.getCourse_video();
+        boolean up = kXJc.setUp(video, "", "");
         if (up) {
             kXJc.thumbImageView.setImageResource(R.mipmap.course_video);
         }
@@ -313,6 +402,17 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
 
     @Override
     public void showZhuanXiang(JingBean jingBean) {
+
+    }
+
+    @Override
+    public void showFen(FenBean fenBean) {
+        data = fenBean.getData();
+        Log.i("fenbean",fenBean.getRet()+"");
+        String share_title = data.getShare_title();
+        Log.i("fenbean",share_title+"");
+
+
 
     }
 
@@ -331,9 +431,39 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
 
     }
 
+
+    /**
+     * 自定义监听器实现IUiListener，需要3个方法
+     * onComplete完成 onError错误 onCancel取消
+     */
+
+    private class ShareUiListener implements IUiListener {
+
+        @Override
+        public void onComplete(Object response) {
+            //分享成功
+
+        }
+
+        @Override
+        public void onError(UiError uiError) {
+            //分享失败
+
+        }
+
+        @Override
+        public void onCancel() {
+            //分享取消
+
+        }
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (null != mTencent) {
+            mTencent.onActivityResult(requestCode, resultCode, data);
+        }
         if(resultCode==2&&requestCode==1){
             boolean aBoolean = data.getBooleanExtra("boolean", falg);
             login_boolean=aBoolean;

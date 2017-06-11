@@ -19,7 +19,7 @@ import io.reactivex.subscribers.DefaultSubscriber;
 
 public class MyApp extends Application {
 
-    public SharedPreferences sharedPreferences;
+    public  SharedPreferences sharedPreferences;
     private SharedPreferences.Editor edit;
 
     @Override
@@ -29,8 +29,6 @@ public class MyApp extends Application {
         sharedPreferences = getSharedPreferences("con",MODE_PRIVATE);
         edit = sharedPreferences.edit();
         //获得首次安装的标识
-
-
         if(sharedPreferences.getBoolean(Api.ISFIRSTINSTALL,false)){
             return;
         }
@@ -86,7 +84,8 @@ public class MyApp extends Application {
 
                     @Override
                     public void onError(Throwable t) {
-                       Log.i("xxxxe",t.getMessage());
+
+                        Log.i("xxxxe",t.getMessage());
                     }
 
                     @Override

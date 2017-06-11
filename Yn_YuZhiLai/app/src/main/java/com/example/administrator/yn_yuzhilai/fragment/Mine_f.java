@@ -213,6 +213,20 @@ public class Mine_f extends Fragment {
             mName.setText(name);
         } if(resultCode==300&&requestCode==200){
 
+        }if(requestCode==100&&resultCode==300){
+            String log_name = data.getStringExtra("log_name");
+            String log_pic = data.getStringExtra("log_pic");
+            mName.setText(log_name);
+            Glide.with(getActivity()).load(log_pic).asBitmap().centerCrop().into(new BitmapImageViewTarget(mPic)
+            {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    mPic.setImageDrawable(circularBitmapDrawable);
+                }
+            });
         }
 
     }

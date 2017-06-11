@@ -2,6 +2,7 @@ package com.example.administrator.yn_yuzhilai.x_mvp.model;
 
 import android.content.Context;
 
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
 
@@ -15,5 +16,6 @@ public interface X_Model {
     interface  OngetKe{
         void getKe(KeBean keBean);
         void getJing(JingBean jingBean);
+        void getFen(FenBean fenBean);
     }
 }

@@ -152,7 +152,7 @@ public class Xiang_KActivity extends Activity implements K_View {
             case R.id.k_x_name:
                 break;
             case R.id.k_x_mai:
-                Intent intent =new Intent(Xiang_KActivity.this,RegiesActivity.class);
+                Intent intent =new Intent(Xiang_KActivity.this,Log_Activity.class);
                 startActivity(intent);
                 break;
         }

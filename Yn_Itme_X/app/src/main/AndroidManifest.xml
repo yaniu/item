@@ -24,6 +24,8 @@
         <activity android:name=".activity.XiangActivity"></activity>
         <activity android:name=".activity.Xiang_KActivity"></activity>
         <activity android:name=".activity.RegiesActivity"></activity>
+        <activity android:name=".activity.Log_Activity"></activity>
+        <activity android:name=".activity.ZhiActivity"></activity>
     </application>
 
 </manifest>

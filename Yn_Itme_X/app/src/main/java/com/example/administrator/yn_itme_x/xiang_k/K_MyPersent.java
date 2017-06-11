@@ -2,6 +2,7 @@ package com.example.administrator.yn_itme_x.xiang_k;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.administrator.yn_itme_x.bean.KeBean;
 
@@ -29,6 +30,7 @@ public class K_MyPersent implements K_Persent {
             @Override
             public void getxiangzhuan(KeBean keBean) {
                 x_view.show(keBean);
+
             }
         });
     }

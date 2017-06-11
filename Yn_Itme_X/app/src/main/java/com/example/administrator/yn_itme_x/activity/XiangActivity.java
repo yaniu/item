@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -74,7 +75,8 @@ public class XiangActivity extends Activity implements X_View {
         zXRec.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         Study_rec_zhuan_x rec =new Study_rec_zhuan_x(this,course);
         zXRec.setAdapter(rec);
-
+        String object_id = data.getObject_id();
+        Log.i("sadsadsa",object_id);
 
 
     }

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.yn_yuzhilai.R;
 import com.example.administrator.yn_yuzhilai.adpater.Study_rec_ke;
 import com.example.administrator.yn_yuzhilai.adpater.Study_rec_zhuan_x;
+import com.example.administrator.yn_yuzhilai.bean.FenBean;
 import com.example.administrator.yn_yuzhilai.bean.JingBean;
 import com.example.administrator.yn_yuzhilai.bean.KeBean;
 import com.example.administrator.yn_yuzhilai.x_mvp.persenter.X_MyPersenter;
@@ -137,5 +138,10 @@ public class Xiang_JActivity extends BaseActivity implements X_View{
                 startActivityForResult(intent,30);
             }
         });
+    }
+
+    @Override
+    public void showFen(FenBean fenBean) {
+
     }
 }
