@@ -382,7 +382,7 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
         kXText2.setText(data.getAbstractX());
 
         //Glide.with(this).load(data.getSpeaker_head()).into(kXTou);
-        Glide.with(Xiang_Activity.this).load(data.getSpeaker_head()).asBitmap().centerCrop().into(new BitmapImageViewTarget(kXTou)
+        Glide.with(Xiang_Activity.this).load(data.getSpeaker_head()).asBitmap().centerCrop().placeholder(R.mipmap.love2).into(new BitmapImageViewTarget(kXTou)
         {
             @Override
             protected void setResource(Bitmap resource) {

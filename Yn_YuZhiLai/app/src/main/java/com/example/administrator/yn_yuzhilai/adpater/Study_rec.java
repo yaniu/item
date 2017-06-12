@@ -53,7 +53,7 @@ public class Study_rec extends RecyclerView.Adapter<Study_rec.ViewHolder> {
         holder.rec_text2.setText(mian_list.get(position).getTitle2());
         holder.rec_text3.setText(mian_list.get(position).getSpeaker());
         holder.rec_text4.setText(mian_list.get(position).getTry_time()+"分");
-        Glide.with(context).load(mian_list.get(position).getImage()).into(holder.rec_pic);
+        Glide.with(context).load(mian_list.get(position).getImage()).placeholder(R.mipmap.love2).into(holder.rec_pic);
         holder.lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

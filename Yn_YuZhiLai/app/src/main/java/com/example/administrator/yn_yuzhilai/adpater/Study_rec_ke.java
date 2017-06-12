@@ -55,7 +55,7 @@ public class Study_rec_ke extends RecyclerView.Adapter<Study_rec_ke.ViewHolder> 
         holder.rec_num.setText("已售 ："+mian_list.get(position).getLength()+"");
 
 
-        Glide.with(context).load(mian_list.get(position).getImage()).into(holder.rec_pic);
+        Glide.with(context).load(mian_list.get(position).getImage()).placeholder(R.mipmap.love2).into(holder.rec_pic);
         holder.lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

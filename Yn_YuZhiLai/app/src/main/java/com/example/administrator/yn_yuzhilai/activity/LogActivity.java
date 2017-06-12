@@ -92,7 +92,7 @@ public class LogActivity extends Activity {
         ButterKnife.bind(this);
         iText.setText("登录界面");
         Intent intent =getIntent();
-       xing =intent.getIntExtra("position",-1);
+        xing =intent.getIntExtra("position",-1);
 
 
 
@@ -110,6 +110,7 @@ public class LogActivity extends Activity {
                     finish();
                 }else if(xing==2){
                     Intent in =new Intent();
+                    in.putExtra("bool",true);
                     LogActivity.this.setResult(200,in);
                     finish();
                 }
