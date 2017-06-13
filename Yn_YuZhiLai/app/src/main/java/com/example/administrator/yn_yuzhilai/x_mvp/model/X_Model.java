@@ -16,6 +16,6 @@ public interface X_Model {
     interface  OngetKe{
         void getKe(KeBean keBean);
         void getJing(JingBean jingBean);
-        void getFen(FenBean fenBean);
+      //  void getFen(FenBean fenBean);
     }
 }

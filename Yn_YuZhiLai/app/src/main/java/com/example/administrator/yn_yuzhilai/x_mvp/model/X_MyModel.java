@@ -25,7 +25,7 @@ public class X_MyModel implements X_Model {
     public void getKeXiang(Context context, int position, final OngetKe ongetKe) {
         getKe(context,position,ongetKe);
         getJing(context,position,ongetKe);
-        getFen(context,position,ongetKe);
+     //   getFen(context,position,ongetKe);
     }
 
     private void getFen(Context context, int position, final OngetKe ongetKe) {
@@ -44,8 +44,6 @@ public class X_MyModel implements X_Model {
         Log.i("f1_5",Utlues.APP_tick());
         Log.i("f1_6",SharedpreferenceUtile.getInstance().getBaseSession());
         Log.i("f1_7",position+"");
-
-
         String string = sb.toString();
         String sing = Utlues.APP_md5(string);
         String sings = sing.toUpperCase();
@@ -56,7 +54,8 @@ public class X_MyModel implements X_Model {
                 .subscribeWith(new DefaultSubscriber<FenBean>() {
                     @Override
                     public void onNext(FenBean fenBean) {
-                        ongetKe.getFen(fenBean);
+
+                        //ongetKe.getFen(fenBean);
                     }
 
                     @Override

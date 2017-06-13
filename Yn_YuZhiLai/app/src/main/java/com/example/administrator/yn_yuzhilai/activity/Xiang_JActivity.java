@@ -140,8 +140,8 @@ public class Xiang_JActivity extends BaseActivity implements X_View{
         });
     }
 
-    @Override
+    /*@Override
     public void showFen(FenBean fenBean) {
 
-    }
+    }*/
 }

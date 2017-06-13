@@ -73,7 +73,7 @@ public class LogActivity extends Activity {
     TextView tv2;
     @Bind(R.id.log_qq)
     LinearLayout logQq;
-    private int xing;
+
     private static final String TAG = "MainActivity";
     private static final String APP_ID = "1105602574";//官方获取的APPID
     private Tencent mTencent;
@@ -91,8 +91,8 @@ public class LogActivity extends Activity {
 
         ButterKnife.bind(this);
         iText.setText("登录界面");
-        Intent intent =getIntent();
-        xing =intent.getIntExtra("position",-1);
+
+
 
 
 
@@ -102,18 +102,8 @@ public class LogActivity extends Activity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.i_fan:
-                if(xing==1){
-                    Intent in =new Intent();
-                    in.putExtra("boolean",true);
-                    LogActivity.this.setResult(2,in);
-                    Log.i("log","dsdsad");
-                    finish();
-                }else if(xing==2){
-                    Intent in =new Intent();
-                    in.putExtra("bool",true);
-                    LogActivity.this.setResult(200,in);
-                    finish();
-                }
+                Intent intent =new Intent();
+                LogActivity.this.setResult(300,intent);
                 break;
             case R.id.i_text:
                 break;
@@ -214,8 +204,6 @@ public class LogActivity extends Activity {
 
                                     }
                                 });
-
-
                         Intent in =new Intent();
                         in.putExtra("log_name",nickname);
                         in.putExtra("log_pic",figureurl_qq_1);
@@ -312,21 +300,10 @@ public class LogActivity extends Activity {
                                     Log.i("ssssss",user_loginBean.data.session);
                                     Log.i("sss",SharedpreferenceUtile.getInstance().getBaseSession());
                                         Toast.makeText(LogActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                                        if(xing==1){
-                                       /* Intent intentx =new Intent(LogActivity.this,Xiang_Activity.class);
-                                        startActivity(intentx);
-                                        finish();*/
-                                        Intent in =new Intent();
-                                        in.putExtra("boolean",true);
-                                        LogActivity.this.setResult(2,in);
-                                        Log.i("log","dsdsad");
-                                        finish();
-                                    }else if(xing==2){
-                                        Intent in =new Intent();
-                                         in.putExtra("mname","已登录");
-                                        LogActivity.this.setResult(200,in);
-                                        finish();
-                                    }
+                                    Intent intent =new Intent();
+                                    intent.putExtra("mname","已登录");
+                                    LogActivity.this.setResult(200,intent);
+                                    finish();
 
                                 }
                             }

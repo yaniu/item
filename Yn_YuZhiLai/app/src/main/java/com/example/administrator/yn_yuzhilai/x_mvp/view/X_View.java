@@ -16,7 +16,7 @@ public interface X_View {
     //专辑详情
     void showZhuanXiang(JingBean jingBean);
 
-    //分享界面
-    void showFen(FenBean fenBean);
+  /*  //分享界面
+    void showFen(FenBean fenBean);*/
 
 }

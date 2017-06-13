@@ -74,18 +74,7 @@ public class Study_f extends BaseFragment implements MyView {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-     /*   sRecMian.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-        //Study_rec rec1 =new Study_rec(getActivity(),mian_list);
-        Study_rec rec1 =new Study_rec();
-        sRecMian.setAdapter(rec1);
-        sRecKe.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-        //Study_rec rec1 =new Study_rec(getActivity(),mian_list);
-        Study_rec rec1 =new Study_rec();
-        sRecKe.setAdapter(rec1);
-        sRecZhaun.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-        //Study_rec rec1 =new Study_rec(getActivity(),mian_list);
-        Study_rec rec1 =new Study_rec();
-        sRecZhaun.setAdapter(rec1);*/
+
     }
 
     @OnClick({R.id.s_banner, R.id.s_lin_mian, R.id.s_rec_mian, R.id.s_lin_ke, R.id.s_rec_ke, R.id.s_lin_zhuan, R.id.s_rec_zhaun})
@@ -96,11 +85,7 @@ public class Study_f extends BaseFragment implements MyView {
             case R.id.s_lin_mian:
                 Intent intent =new Intent(getActivity(),ClassActivity.class);
                 intent.putExtra("name","免费课程");
-
-
                 startActivityForResult(intent,10);
-
-
                 break;
             case R.id.s_rec_mian:
                 break;

@@ -40,10 +40,10 @@ public class X_MyPersenter implements X_Persenter {
                 x_view.showZhuanXiang(jingBean);
             }
 
-            @Override
+          /*  @Override
             public void getFen(FenBean fenBean) {
                 x_view.showFen(fenBean);
-            }
+            }*/
         });
     }
 }

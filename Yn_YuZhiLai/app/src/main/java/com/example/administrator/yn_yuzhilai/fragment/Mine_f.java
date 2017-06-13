@@ -136,25 +136,18 @@ public class Mine_f extends Fragment {
                 break;
             case R.id.m_pic:
                if(login_boolean){
-                   Toast.makeText(getActivity(), "头像", Toast.LENGTH_SHORT).show();
                    //点击头像进行拍照，或者
                    showChoosePicDialog();
                }else{
-                   Intent intent =new Intent(getActivity(), LogActivity.class);
-                   intent.putExtra("position",2);
-
-                   startActivityForResult(intent,111);
+                   Toast.makeText(getActivity(), "主人，请先登录哈~~~", Toast.LENGTH_SHORT).show();
                }
                 break;
             case R.id.m_name:
                 if(login_boolean){
                     Intent intent0 =new Intent(getActivity(),XiuActivity.class);
-                    startActivityForResult(intent0,100);
+                    startActivityForResult(intent0,111);
                 }else{
-                    Intent intent =new Intent(getActivity(), LogActivity.class);
-                    intent.putExtra("position",2);
-
-                    startActivityForResult(intent,222);
+                    Toast.makeText(getActivity(), "主人，请先登录哈~~", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.m_name2:
@@ -163,10 +156,7 @@ public class Mine_f extends Fragment {
 
                 break;
             case R.id.m_lin:
-
                 Intent intent =new Intent(getActivity(), LogActivity.class);
-                intent.putExtra("position",2);
-
                 startActivityForResult(intent,100);
                 //startActivity(intent);
                 break;
@@ -291,8 +281,7 @@ public class Mine_f extends Fragment {
             String name = data.getStringExtra("mname");
             Log.i("name",name);
             mName.setText(name);
-            boolean aBoolean = data.getBooleanExtra("bool", falg);
-            login_boolean=aBoolean;
+
         } if(resultCode==300&&requestCode==200){
 
         }
@@ -300,16 +289,8 @@ public class Mine_f extends Fragment {
             String name = data.getStringExtra("mname");
             Log.i("name",name);
             mName.setText(name);
-            boolean aBoolean = data.getBooleanExtra("bool", falg);
-            login_boolean=aBoolean;
         }
-        if(requestCode==222&&resultCode==200){
-            String name = data.getStringExtra("mname");
-            Log.i("name",name);
-            mName.setText(name);
-            boolean aBoolean = data.getBooleanExtra("bool", falg);
-            login_boolean=aBoolean;
-
+        if(requestCode==200&&resultCode==111){
         }
         if(requestCode==100&&resultCode==300){
             String log_name = data.getStringExtra("log_name");

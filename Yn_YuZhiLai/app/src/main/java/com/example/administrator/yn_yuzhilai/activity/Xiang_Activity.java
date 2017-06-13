@@ -117,12 +117,8 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
     private int price;
     private   String number;
     private String mai;
-
-
-
     private FenBean.DataBean data;
     private static final String TAG = "MainActivity";
-
     private static final String APP_ID = "1105602574"; //获取的APPID
     private ShareUiListener mIUiListener;
     private Tencent mTencent;
@@ -174,7 +170,9 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
             case R.id.k_x_name:
                 break;
             case R.id.k_x_fen:
-              if(login_boolean){
+              if(login_boolean==false){
+                  Toast.makeText(this, "主人，请先登录哈~~么么哒！", Toast.LENGTH_SHORT).show();
+              }else{
                   AlertDialog.Builder builder = new AlertDialog.Builder(Xiang_Activity.this);
                   final AlertDialog alertDialog = builder.create();
                   View vs =View.inflate(Xiang_Activity.this,R.layout.fen_alder,null);
@@ -210,9 +208,9 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                           params.putString(QzoneShare.SHARE_TO_QQ_TITLE, data.getShare_title());//分享标题
                           params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, data.getShare_content());//分享的内容摘要
                           params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, video);//分享的链接
-                        /*  //分享的图片, 以ArrayList<String>的类型传入，以便支持多张图片（注：图片最多支持9张图片，多余的图片会被丢弃）
+                          //分享的图片, 以ArrayList<String>的类型传入，以便支持多张图片（注：图片最多支持9张图片，多余的图片会被丢弃）
                           ArrayList<String> imageUrls = new ArrayList<String>();
-                          imageUrls.add("http://avatar.csdn.net/B/3/F/1_sandyran.jpg");//添加一个图片地址*/
+                          imageUrls.add("http://avatar.csdn.net/B/3/F/1_sandyran.jpg");//添加一个图片地址
                           params.putString(QzoneShare.SHARE_TO_QQ_IMAGE_URL, data.getShare_img());//分享的图片URL
                           mTencent.shareToQzone(Xiang_Activity.this, params, new ShareUiListener());
 
@@ -226,10 +224,6 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                       }
                   });
 
-              }else{
-                  Intent intent =new Intent(Xiang_Activity.this,LogActivity.class);
-                  intent.putExtra("position",1);
-                  startActivityForResult(intent,1);
               }
                 break;
             case R.id.k_x_jc:
@@ -242,9 +236,7 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                     intent.putExtra("jiage",price);
                     startActivity(intent);
                 }else{
-                    Intent intent =new Intent(Xiang_Activity.this,LogActivity.class);
-                    intent.putExtra("position",1);
-                    startActivityForResult(intent,1);
+                    Toast.makeText(this, "主人，请先登录哈~~么么哒！", Toast.LENGTH_SHORT).show();
                     //startActivity(intent);
                 }
                 break;
@@ -351,7 +343,6 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
                 .subscribeWith(new DefaultSubscriber<ShouBean>() {
                     @Override
                     public void onNext(ShouBean shouBean) {
-
                         Log.i("shouBean",shouBean.getData().getStatus()+"");
 
 
@@ -406,7 +397,7 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
 
     }
 
-    @Override
+   /* @Override
     public void showFen(FenBean fenBean) {
         data = fenBean.getData();
         Log.i("fenbean",fenBean.getRet()+"");
@@ -415,7 +406,7 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
 
 
 
-    }
+    }*/
 
     @Override
     public void showShow(ShouLieBean shouLieBean) {
@@ -465,11 +456,8 @@ public class Xiang_Activity extends Activity implements X_View,Shou_View{
         if (null != mTencent) {
             mTencent.onActivityResult(requestCode, resultCode, data);
         }
-        if(resultCode==2&&requestCode==1){
-            boolean aBoolean = data.getBooleanExtra("boolean", falg);
-            login_boolean=aBoolean;
-            Log.i("login",login_boolean+"");
-        }
+
+
     }
     /*  @Override
     public void showLog(ZhuBean zhuBean) {
